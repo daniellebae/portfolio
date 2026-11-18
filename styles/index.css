@@ -10,6 +10,7 @@ body { font-family:'Roboto Mono',ui-monospace,monospace; color:var(--ink); backg
 .btn:hover { background:var(--ink); color:#fff; }
 .btn.solid { background:var(--ink); color:#fff; } .btn.solid:hover { background:#fff; color:var(--ink); }
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline:2px solid #111; outline-offset:3px; }
+.typewriter { font-size:clamp(20px,3vw,31px); font-size:min(40px,7cqi); }
 .caret { display:inline-block; width:2px; height:1em; background:var(--ink); margin-left:3px; vertical-align:-0.12em; animation:blink 1.05s steps(1) infinite; }
 @keyframes blink { 50% { opacity:0 } }
 .reveal { opacity:0; transform:translateY(36px) scale(.985); filter:blur(6px); transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1), filter .9s; }
