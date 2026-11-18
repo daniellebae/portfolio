@@ -29,9 +29,9 @@ export default function Home() {
       <main>
         <section id="top" className="section" style={{ paddingTop: 140 }}>
           <div className="wrap grid md:grid-cols-2 gap-12 items-center w-full" style={{ opacity: heroFade, transform: `scale(${0.96 + heroFade * 0.04})`, transition: 'opacity .1s linear' }}>
-            <div><Typewriter /><p className="p mt-6" style={{ color: '#6b6b6b' }}>marketing director · photographer · writer</p>
-              <a href="#resume" className="btn mt-10">scroll to explore ↓</a></div>
-            <Img src={site.portrait} alt="portrait of danielle" className="w-full" style={{ aspectRatio: '4/5', maxWidth: 380, justifySelf: 'end' }} />
+            <div><Typewriter />
+              <a href="#resume" className="btn mt-8">scroll to explore ↓</a></div>
+            <Img src={site.portrait} alt="portrait of danielle" className="w-full" style={{ aspectRatio: '3/4', maxWidth: 270, justifySelf: 'end', objectPosition: '60% 50%' }} />
           </div>
         </section>
 
@@ -60,7 +60,7 @@ export default function Home() {
           </div></div></section>
 
         <section id="about" className="section" style={{ background: 'var(--soft)' }}><div className="wrap w-full grid md:grid-cols-2 gap-12 items-center">
-          <Reveal><p className="eyebrow">04 · about me</p><h2 className="h2">hi, it’s me.</h2>
+          <Reveal><p className="eyebrow">04 · about me</p><h2 className="h2">{site.aboutTitle}</h2>
             {site.about.map((t, i) => <p key={i} className="p mb-4">{t}</p>)}</Reveal>
           <Reveal delay={120}><dl>{site.facts.map(([k, v]) => <div key={k} className="flex justify-between gap-6 py-4 text-sm" style={{ borderTop: '1px solid #e6e6e6' }}><dt style={{ color: '#6b6b6b' }}>{k}</dt><dd>{v}</dd></div>)}</dl></Reveal>
         </div></section>

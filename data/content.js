@@ -4,11 +4,13 @@ export const site = {
   email: 'hello@example.com',
   resume: '/files/resume.pdf',
   portrait: '/images/portrait.jpg', // your photo (right side of the hero)
+  aboutTitle: 'hi, it’s dani!',
   about: [
-    'i’m a marketing director, photographer, and writer. i love turning ideas into things people remember.',
-    'placeholder: tell your story here: where you study, what you care about, what you do for fun.',
+    'i’m a marketing director, photographer, and writer.',
+    'i study at the university of washington at the foster business school as a marketing and information systems major. as both a business major and a writer, i’ve begun falling in love with telling stories through marketing. i believe it is the most rewarding part of the work.',
+    'as of right now, i’ve become infatuated with vlogging (and editing), motion graphics (in the process of learning), and fujifilms (am currently saving up to buy one).',
   ],
-  facts: [['based in', 'your city'], ['studying', 'your major'], ['currently', 'leading marketing for RSOs']],
+  facts: [['based in', 'seattle'], ['studying', 'marketing + information systems'], ['currently', 'leading marketing for RSOs']],
 }
 export const gallery = [ // add files to /public/images/gallery and list them here
   { src: '/images/gallery/01.jpg', title: 'untitled 01' },
