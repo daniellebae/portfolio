@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { decrypt } from '../lib/decrypt'
 const links = [['resume','resume'],['gallery','gallery'],['campaigns','my campaigns'],['about','about me'],['writing','written works'],['contact','contact']]
 export default function Nav() {
   const [active, setActive] = useState(''); const [open, setOpen] = useState(false)
+  const ref = useRef(null)
+  useEffect(() => decrypt(ref.current), [])
   useEffect(() => {
     const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && setActive(e.target.id)), { rootMargin: '-45% 0px -50% 0px' })
     links.forEach(([id]) => { const el = document.getElementById(id); el && io.observe(el) }); return () => io.disconnect()
   }, [])
   return (
-    <header className="fixed top-0 inset-x-0 z-40" style={{ background: 'rgba(255,255,255,.82)', backdropFilter: 'blur(14px)', borderBottom: '1px solid var(--line)' }}>
+    <header ref={ref} data-decrypt-early className="fixed top-0 inset-x-0 z-40" style={{ background: 'rgba(255,255,255,.82)', backdropFilter: 'blur(14px)', borderBottom: '1px solid var(--line)' }}>
       <div className="wrap flex items-center justify-between" style={{ height: 56 }}>
         <a href="#top" className="text-sm font-normal">danielle</a>
         <button className="md:hidden text-sm min-h-[44px] px-2" onClick={() => setOpen(!open)} aria-expanded={open}>{open ? 'close' : 'menu'}</button>

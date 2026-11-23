@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react'
+import { typeDelay } from '../lib/typing'
 // the \n is where the line breaks: the greeting always shows as exactly 2 lines
 const TEXT = "hi! i'm danielle.\nwelcome to my world :)"
 export default function Typewriter() {
   const [n, setN] = useState(0)
   useEffect(() => {
     if (n >= TEXT.length) return
-    // choppy: uneven delays, longer beats after punctuation, the odd hesitation
-    let d = 50 + Math.random() * 110
-    if (Math.random() < 0.12) d += 160
-    if ('!.'.includes(TEXT[n - 1])) d += 260
-    const t = setTimeout(() => setN(n + 1), n === 0 ? 700 : d)
+    const t = setTimeout(() => setN(n + 1), n === 0 ? 700 : typeDelay(TEXT, n))
     return () => clearTimeout(t)
   }, [n])
   return (

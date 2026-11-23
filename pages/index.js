@@ -5,6 +5,7 @@ import Reveal from '../components/Reveal'
 import Typewriter from '../components/Typewriter'
 import Contact from '../components/Contact'
 import EasterEgg from '../components/EasterEgg'
+import Decrypt from '../components/Decrypt'
 import { site, gallery, campaigns, writings } from '../data/content'
 
 function Img({ src, alt, className = '', style }) {
@@ -30,7 +31,7 @@ export default function Home() {
         <section id="top" className="section" style={{ paddingTop: 140 }}>
           <div className="wrap grid md:grid-cols-2 gap-12 items-center w-full" style={{ opacity: heroFade, transform: `scale(${0.96 + heroFade * 0.04})`, transition: 'opacity .1s linear' }}>
             <div><Typewriter />
-              <a href="#resume" className="btn mt-8">scroll to explore ↓</a></div>
+              <a href="#resume" className="btn mt-8"><Decrypt early>scroll to explore ↓</Decrypt></a></div>
             <Img src={site.portrait} alt="portrait of danielle" className="w-full" style={{ aspectRatio: '3/4', maxWidth: 270, justifySelf: 'end', objectPosition: '60% 50%' }} />
           </div>
         </section>
@@ -80,7 +81,7 @@ export default function Home() {
         </div></section>
       </main>
       <footer style={{ padding: '120px 0 100px' }}><Reveal><EasterEgg /></Reveal>
-        <p className="text-center text-[11px] mt-10" style={{ color: '#8a8a8a' }}>© {new Date().getFullYear()} danielle</p></footer>
+        <Decrypt as="p" className="text-center text-[11px] mt-10" style={{ color: '#8a8a8a' }}>© {new Date().getFullYear()} danielle</Decrypt></footer>
     </>
   )
 }

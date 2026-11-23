@@ -13,10 +13,27 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .typewriter { font-size:clamp(20px,3vw,31px); font-size:min(40px,7cqi); }
 .caret { display:inline-block; width:2px; height:1em; background:var(--ink); margin-left:3px; vertical-align:-0.12em; animation:blink 1.05s steps(1) infinite; }
 @keyframes blink { 50% { opacity:0 } }
-.reveal { opacity:0; transform:translateY(36px) scale(.985); filter:blur(6px); transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1), filter .9s; }
-.reveal.in { opacity:1; transform:none; filter:none; }
+.reveal { opacity:0; transform:translateY(36px) scale(.985); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+.reveal.in { opacity:1; transform:none; }
 .ph { background:var(--soft); border:1px dashed #d8d8d8; border-radius:20px; display:flex; align-items:center; justify-content:center; color:#9a9a9a; font-size:12px; text-align:center; padding:16px; }
 .card { border:1px solid var(--line); border-radius:20px; padding:24px; background:#fff; transition:transform .35s, box-shadow .35s; }
 .card:hover { transform:translateY(-4px); box-shadow:0 14px 40px rgba(0,0,0,.06); }
 .input { width:100%; border:1px solid #ddd; border-radius:14px; padding:14px 16px; font:inherit; font-size:14px; background:#fff; }
-@media (prefers-reduced-motion: reduce) { html{scroll-behavior:auto} .reveal{transition:opacity .4s;transform:none;filter:none} .caret{animation:none} }
+@media (prefers-reduced-motion: reduce) { html{scroll-behavior:auto} .reveal{transition:opacity .4s;transform:none} .caret{animation:none} }
+
+/* decrypt effect: letters start as empty slots, scramble, then lock in */
+.dc-pending [data-decrypt-early] { visibility:hidden; }
+.dc { color:transparent !important; border-radius:2px; background:linear-gradient(#e6e6e6,#e6e6e6) center / 74% 66% no-repeat; }
+.dc.scr { color:#a8a8a8 !important; background-image:linear-gradient(#f3f3f3,#f3f3f3); }
+.btn.solid .dc, .btn:hover .dc { background-image:linear-gradient(#3a3a3a,#3a3a3a); }
+
+/* footer easter egg: a tiny pixel buddy with a speech bubble */
+.egg { display:flex; flex-direction:column; align-items:center; gap:12px; margin:0 auto; padding:8px 16px; cursor:pointer; background:none; border:0; }
+.egg-bubble { position:relative; font-size:11px; line-height:1; white-space:pre; padding:8px 12px; border:1px solid var(--ink); border-radius:12px; background:#fff; min-height:29px; min-width:40px; }
+.egg-bubble::after { content:''; position:absolute; left:50%; bottom:-5px; width:8px; height:8px; background:#fff; border-right:1px solid var(--ink); border-bottom:1px solid var(--ink); transform:translateX(-50%) rotate(45deg); }
+.egg-bubble .caret { width:1px; margin-left:2px; }
+.buddy { width:40px; height:47.5px; image-rendering:pixelated; filter:drop-shadow(0 0 5px rgba(150,240,120,.55)); animation:bob 2.4s ease-in-out infinite; transition:transform .2s; }
+.egg:hover .buddy, .egg:focus-visible .buddy { animation:hop .5s ease-out; }
+@keyframes bob { 50% { transform:translateY(-3px) } }
+@keyframes hop { 40% { transform:translateY(-10px) } }
+@media (prefers-reduced-motion: reduce) { .buddy { animation:none !important } }
