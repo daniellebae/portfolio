@@ -78,3 +78,26 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .zoomable:hover { transform:translateY(-3px); }
 .prose p { font-size:15px; line-height:2; color:#333; margin-bottom:1.4em; }
 .poem p { font-size:15px; line-height:2.1; color:#333; white-space:pre-line; margin-bottom:1.8em; }
+
+/* hero: a row of red seals that link to each page */
+.stamp-links { display:flex; flex-wrap:wrap; gap:14px 16px; margin-top:34px; }
+.stamp-link { position:relative; display:block; width:52px; height:52px; transform:rotate(var(--tilt)); transition:transform .25s cubic-bezier(.3,1.4,.5,1); }
+.seal-svg { width:100%; height:100%; display:block; }
+.stamp-link:hover, .stamp-link:focus-visible { transform:rotate(0deg) translateY(-4px) scale(1.08); }
+.stamp-link:active { transform:scale(.94); }
+.stamp-tip { position:absolute; left:50%; top:calc(100% + 10px); transform:translate(-50%, -4px); white-space:nowrap; font-size:11px; color:var(--ink);
+  background:#fff; border:1px solid var(--line); border-radius:999px; padding:4px 10px; opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }
+.stamp-link:hover .stamp-tip, .stamp-link:focus-visible .stamp-tip { opacity:1; transform:translate(-50%, 0); }
+.stamp-link:focus-visible { outline:2px solid #c4342d; outline-offset:4px; border-radius:6px; }
+
+/* hero: brush-stroke hint that about me is below */
+.scroll-hint { position:absolute; left:50%; bottom:26px; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; color:var(--muted); }
+.scroll-hint-label { font-size:10px; letter-spacing:.22em; text-transform:lowercase; }
+.scroll-hint-ink { width:12px; height:40px; opacity:.55; }
+.scroll-hint-ink path:first-child { stroke-dasharray:60; stroke-dashoffset:60; animation:inkdraw 2.6s ease-in-out infinite; }
+.scroll-hint-ink path:last-child { opacity:0; animation:inkdrop 2.6s ease-in-out infinite; }
+.scroll-hint:hover .scroll-hint-ink { opacity:.85; }
+@keyframes inkdraw { 0% { stroke-dashoffset:60 } 55%, 85% { stroke-dashoffset:0; opacity:1 } 100% { stroke-dashoffset:0; opacity:0 } }
+@keyframes inkdrop { 0%, 50% { opacity:0; transform:translateY(-4px) } 60%, 85% { opacity:1; transform:none } 100% { opacity:0 } }
+@media (prefers-reduced-motion: reduce) { .scroll-hint-ink path { animation:none !important; stroke-dashoffset:0 !important; opacity:1 !important } }
+@media (max-width: 480px) { .stamp-links { gap:12px 10px; } .stamp-link { width:44px; height:44px; } }

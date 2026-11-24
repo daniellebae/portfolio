@@ -7,7 +7,7 @@ export const site = {
   // about me: english + korean, switched with the red stamp
   about: {
     en: {
-      title: 'hi, it’s dani!',
+      title: 'my name is danielle bae.',
       body: [
         'i study at the university of washington’s foster school of business, where i’m pursuing a double major in marketing and information systems.',
         'born into a household where korean was the primary language, i grew up fluent in my mother tongue, thanks to my parents.',
@@ -21,7 +21,7 @@ export const site = {
       stamp: 'KOR', hint: 'click me', switchLabel: 'read my bio in korean',
     },
     ko: {
-      title: '안녕하세요, 배시원입니다!',
+      title: '배시원 입니다 :)',
       body: [
         '저는 워싱턴 대학교 포스터 경영대학에서 마케팅과 정보시스템을 복수전공하고 있습니다.',
         '한국어를 주로 사용하는 가정에서 태어나고 자라, 부모님 덕분에 자연스럽게 한국어를 모국어로 익히며 자랐습니다.',

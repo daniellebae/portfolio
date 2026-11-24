@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { typeDelay } from '../lib/typing'
 // the \n is where the line breaks: the greeting always shows as exactly 2 lines
-const TEXT = "hi! i'm danielle.\nwelcome to my world :)"
+const TEXT = "hi!\nwelcome to my world :)"
 export default function Typewriter() {
   const [n, setN] = useState(0)
   useEffect(() => {

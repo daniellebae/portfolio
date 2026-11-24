@@ -7,6 +7,8 @@ import EasterEgg from '../components/EasterEgg'
 import About from '../components/About'
 import SinceBirth from '../components/SinceBirth'
 import Img from '../components/Img'
+import StampLinks from '../components/StampLinks'
+import ScrollHint from '../components/ScrollHint'
 import { site } from '../data/content'
 
 export default function Home() {
@@ -22,12 +24,13 @@ export default function Home() {
       </Head>
       <Nav />
       <main>
-        <section id="top" className="section" style={{ paddingTop: 140 }}>
+        <section id="top" className="section relative" style={{ paddingTop: 140 }}>
           <div className="wrap grid md:grid-cols-2 gap-12 items-center w-full" style={{ opacity: heroFade, transform: `scale(${0.96 + heroFade * 0.04})`, transition: 'opacity .1s linear' }}>
             <div><Typewriter />
-              <a href="#about" className="btn mt-8">scroll to explore ↓</a></div>
+              <StampLinks /></div>
             <Img src={site.portrait} alt="portrait of danielle" className="w-full" style={{ aspectRatio: '3/4', maxWidth: 270, justifySelf: 'end', objectPosition: '60% 50%' }} />
           </div>
+          <ScrollHint />
         </section>
         <About />
       </main>
