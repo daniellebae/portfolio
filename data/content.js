@@ -44,16 +44,52 @@ export const gallery = [ // add files to /public/images/gallery and list them he
   { src: '/images/gallery/05.jpg', title: 'untitled 05' },
   { src: '/images/gallery/06.jpg', title: 'untitled 06' },
 ]
+// ✏️ campaigns: each card opens its own page at /campaigns/<slug>
+//   image:   the cover shown on the card
+//   graphics: every graphic for that campaign (shown in a grid; click to enlarge)
+//   details: paragraphs telling the story; results: short bullet points
 export const campaigns = [
-  { org: 'RSO name', title: 'campaign title', type: 'social + graphics', blurb: 'one line about the goal and the result.', image: '' },
-  { org: 'RSO name', title: 'campaign title', type: 'social + graphics', blurb: 'one line about the goal and the result.', image: '' },
-  { org: 'RSO name', title: 'campaign title', type: 'social + graphics', blurb: 'one line about the goal and the result.', image: '' },
+  {
+    slug: 'campaign-one', org: 'RSO name', title: 'campaign title', type: 'social + graphics', date: '2026',
+    blurb: 'one line about the goal and the result.',
+    image: '',
+    graphics: [{ src: '', caption: 'graphic caption' }, { src: '', caption: 'graphic caption' }, { src: '', caption: 'graphic caption' }],
+    role: 'marketing director',
+    details: ['the brief: what the organization needed and who it was for.', 'what i made: the concept, the visual direction, and how the pieces worked together.'],
+    results: ['a result, e.g. +40% event sign-ups', 'another result, e.g. 2.1k impressions in a week'],
+  },
+  {
+    slug: 'campaign-two', org: 'RSO name', title: 'campaign title', type: 'social + graphics', date: '2026',
+    blurb: 'one line about the goal and the result.',
+    image: '',
+    graphics: [{ src: '', caption: 'graphic caption' }, { src: '', caption: 'graphic caption' }],
+    role: 'marketing lead',
+    details: ['the brief: what the organization needed and who it was for.', 'what i made: the concept, the visual direction, and how the pieces worked together.'],
+    results: ['a result', 'another result'],
+  },
+  {
+    slug: 'campaign-three', org: 'RSO name', title: 'campaign title', type: 'social + graphics', date: '2025',
+    blurb: 'one line about the goal and the result.',
+    image: '',
+    graphics: [{ src: '', caption: 'graphic caption' }, { src: '', caption: 'graphic caption' }, { src: '', caption: 'graphic caption' }],
+    role: 'designer',
+    details: ['the brief: what the organization needed and who it was for.', 'what i made: the concept, the visual direction, and how the pieces worked together.'],
+    results: ['a result', 'another result'],
+  },
 ]
+
+// ✏️ written works: each opens its own page at /writing/<slug>
+//   body: the full piece (blank lines between paragraphs; for poems, line breaks are kept)
+//   link: optional, the original publication (shows a "read the original" button)
 export const writings = [
-  { kind: 'article', title: 'placeholder article title', date: '2026', blurb: 'a short teaser.', link: '#' },
-  { kind: 'poem', title: 'placeholder poem title', date: '2026', blurb: 'a short teaser.', link: '#' },
-  { kind: 'article', title: 'placeholder article title', date: '2025', blurb: 'a short teaser.', link: '#' },
+  { slug: 'article-one', kind: 'article', title: 'placeholder article title', date: '2026', publication: 'the daily @ uw', blurb: 'a short teaser.', link: '',
+    body: 'the full article goes here.\n\nleave a blank line between paragraphs.' },
+  { slug: 'poem-one', kind: 'poem', title: 'placeholder poem title', date: '2026', publication: '', blurb: 'a short teaser.', link: '',
+    body: 'the poem goes here,\nline by line,\nexactly as you want it.\n\na blank line starts a new stanza.' },
+  { slug: 'article-two', kind: 'article', title: 'placeholder article title', date: '2025', publication: 'the daily @ uw', blurb: 'a short teaser.', link: '',
+    body: 'the full article goes here.' },
 ]
+
 export const poemDirectory = [ // the easter egg: poems you love
   { title: 'poem title', author: 'poet name', text: 'poem text goes here.\nline breaks are kept.' },
 ]

@@ -17,9 +17,9 @@ export default function About() {
   }, [lang])
 
   return (
-    <section id="about" className="section about" lang={lang === 'ko' ? 'ko' : 'en'}>
+    <section id="about" className="about" lang={lang === 'ko' ? 'ko' : 'en'}>
       <InkPainting />
-      <div className="wrap w-full relative grid md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] gap-12 md:gap-16 items-start">
+      <div className="about-inner"><div className="wrap w-full grid md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] gap-12 md:gap-16 items-start">
         <Reveal>
           <div className="flex items-start justify-between gap-6 mb-8">
             <h2 ref={title} className="h2" style={{ marginBottom: 0 }}>{t.title}</h2>
@@ -35,7 +35,7 @@ export default function About() {
               <dt style={{ color: '#6b6b6b' }}>{k}</dt><dd className="text-right">{v}</dd></div>
           ))}</dl>
         </Reveal>
-      </div>
+      </div></div>
     </section>
   )
 }
