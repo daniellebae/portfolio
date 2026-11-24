@@ -101,3 +101,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @keyframes inkdrop { 0%, 50% { opacity:0; transform:translateY(-4px) } 60%, 85% { opacity:1; transform:none } 100% { opacity:0 } }
 @media (prefers-reduced-motion: reduce) { .scroll-hint-ink path { animation:none !important; stroke-dashoffset:0 !important; opacity:1 !important } }
 @media (max-width: 480px) { .stamp-links { gap:12px 10px; } .stamp-link { width:44px; height:44px; } }
+/* korean bio: the korean font's regular weight is lighter than roboto mono's, so thicken
+   its strokes a touch and strengthen the halo so it reads as clearly as the english */
+.about[lang="ko"] .p, .about[lang="ko"] dd { color:#141414; -webkit-text-stroke:.45px #141414;
+  text-shadow:0 0 2px #fafafa, 0 0 4px #fafafa, 0 0 8px #fafafa, 0 0 16px #fafafa, 0 0 28px rgba(250,250,250,.95); }
+.about[lang="ko"] .h2 { -webkit-text-stroke:.6px currentColor; }
