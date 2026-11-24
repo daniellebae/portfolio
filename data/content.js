@@ -37,12 +37,9 @@ export const site = {
   },
 }
 export const gallery = [ // add files to /public/images/gallery and list them here
-  { src: '/images/gallery/01.jpg', title: 'untitled 01' },
-  { src: '/images/gallery/02.jpg', title: 'untitled 02' },
-  { src: '/images/gallery/03.jpg', title: 'untitled 03' },
-  { src: '/images/gallery/04.jpg', title: 'untitled 04' },
-  { src: '/images/gallery/05.jpg', title: 'untitled 05' },
-  { src: '/images/gallery/06.jpg', title: 'untitled 06' },
+  // title is the photo's description (alt text) and its caption when enlarged
+  { src: '/images/gallery/01.jpg', title: 'two people wading through the shallows at sunset' },
+  { src: '/images/gallery/02.jpg', title: 'friends and a dog on the beach at golden hour' },
 ]
 // ✏️ campaigns: each card opens its own page at /campaigns/<slug>
 //   image:   the cover shown on the card
