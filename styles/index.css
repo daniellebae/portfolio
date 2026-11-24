@@ -106,3 +106,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .about[lang="ko"] .p, .about[lang="ko"] dd { color:#141414; -webkit-text-stroke:.45px #141414;
   text-shadow:0 0 2px #fafafa, 0 0 4px #fafafa, 0 0 8px #fafafa, 0 0 16px #fafafa, 0 0 28px rgba(250,250,250,.95); }
 .about[lang="ko"] .h2 { -webkit-text-stroke:.6px currentColor; }
+
+/* resume: the page images blend into the background (white paper disappears) */
+.resume-pages { max-width:880px; margin:0 auto; }
+.resume-page { display:block; width:100%; height:auto; mix-blend-mode:multiply; margin:0 auto; }
+.resume-page + .resume-page { margin-top:12px; padding-top:12px; border-top:1px dashed #e4e4e4; }
