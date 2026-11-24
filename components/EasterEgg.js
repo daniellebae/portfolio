@@ -6,18 +6,21 @@ const LINES = ['hi!', "you're still here?", 'click on me :)']
 const GAME_LINE = ['another fun fact about me is that i love smiskis :) feel free to stick around and play the smiski game']
 
 // types each line with the same choppy rhythm as the hero, backspaces, then types the next
-function useTyping(LINES, start) {
+// pace: { speed: multiplier on the typing delay, lead: ms before typing, hold: ms a line stays, erase: ms per backspace }
+const NORMAL = { speed: 1, lead: 500, hold: 1300, erase: 34 }
+const QUICK = { speed: 0.45, lead: 120, hold: 750, erase: 16 } // the footer line: done before anyone scrolls away
+function useTyping(LINES, start, pace = NORMAL) {
   const [line, setLine] = useState(0); const [n, setN] = useState(0); const [erasing, setErasing] = useState(false)
   useEffect(() => {
     if (!start) return
     const text = LINES[line]; let t
     if (!erasing) {
-      if (n < text.length) t = setTimeout(() => setN(n + 1), n === 0 ? 500 : typeDelay(text, n))
-      else if (line < LINES.length - 1) t = setTimeout(() => setErasing(true), 1300)
-    } else if (n > 0) t = setTimeout(() => setN(n - 1), 34)
+      if (n < text.length) t = setTimeout(() => setN(n + 1), n === 0 ? pace.lead : typeDelay(text, n) * pace.speed)
+      else if (line < LINES.length - 1) t = setTimeout(() => setErasing(true), pace.hold)
+    } else if (n > 0) t = setTimeout(() => setN(n - 1), pace.erase)
     else { setErasing(false); setLine(line + 1) }
     return () => clearTimeout(t)
-  }, [start, line, n, erasing])
+  }, [start, line, n, erasing, pace])
   return LINES[line].slice(0, n)
 }
 
@@ -91,11 +94,11 @@ export default function EasterEgg() {
   const [open, setOpen] = useState(false)
   const [seen, setSeen] = useState(false)
   const btn = useRef(null)
-  const text = useTyping(LINES, seen)
+  const text = useTyping(LINES, seen, QUICK)
 
   useEffect(() => { loadGlowRunner().catch(() => {}) }, []) // warm up the game in the background
   useEffect(() => {
-    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setSeen(true); io.disconnect() } }, { threshold: 0.6 })
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setSeen(true); io.disconnect() } }, { threshold: 0.1 })
     btn.current && io.observe(btn.current); return () => io.disconnect()
   }, [])
 
