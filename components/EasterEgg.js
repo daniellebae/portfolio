@@ -21,13 +21,9 @@ function useTyping(LINES, start) {
   return LINES[line].slice(0, n)
 }
 
-// a red name seal (dojang) reading 배시원: 배 down the right column, 시원 down the left
-function NameSeal() {
-  const RED = '#c4342d', font = "'Nanum Gothic Coding','Apple SD Gothic Neo','Malgun Gothic',sans-serif"
-  const ch = (t, x, y, sy) => (
-    <text transform={`translate(${x} ${y}) scale(1 ${sy})`} textAnchor="middle" dominantBaseline="central" fontSize="27" fontWeight="700"
-      fill={RED} stroke={RED} strokeWidth="1.4" strokeLinejoin="round" fontFamily={font}>{t}</text>
-  )
+// a red seal (dojang) with a rooster drawn in single brush lines: born in the year of the wood rooster
+function RoosterSeal() {
+  const RED = '#c4342d'
   return (
     <svg viewBox="0 0 100 100" className="name-seal" aria-hidden="true">
       <defs>
@@ -39,11 +35,23 @@ function NameSeal() {
       </defs>
       <g filter="url(#seal-worn)">
         <rect x="4" y="4" width="92" height="92" rx="5" fill={RED} />
-        <rect x="15" y="15" width="70" height="70" rx="2" fill="#fff" />
-        <rect x="49.2" y="19" width="1.6" height="62" fill={RED} />
-        {ch('배', 67, 50, 2)}
-        {ch('시', 33, 33, 1.05)}
-        {ch('원', 33, 67, 1.05)}
+        <rect x="13" y="13" width="74" height="74" rx="2" fill="#fff" />
+        <g fill="none" stroke={RED} strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M35 27 C33 21 37 19 39 24 C39 18 44 18 44 24 C46 19 50 21 46 28" />
+          <path d="M37 41 C31 38 31 28 38 27 C43 26 47 28 47 32" />
+          <path d="M37 41 C33 50 34 59 41 65 C47 70 58 70 65 64" />
+          <path d="M33 31 L27 33.5 L33 35" />
+          <path d="M34 36 C32 40 35 42 37 39" />
+          <path d="M47 32 C50 39 53 45 60 46 C63 46 65 44 66 41" />
+          <path d="M66 41 C67 29 77 23 83 31" />
+          <path d="M65 47 C71 36 81 37 82 46" />
+          <path d="M65 54 C74 47 82 53 78 63" />
+          <path d="M78 63 C74 66 69 66 65 64" />
+          <path d="M46 51 C53 46 61 50 59 58 C55 61 50 59 46 54" />
+          <path d="M48 69 L47 78 M47 78 L43 81 M47 78 L51 81" />
+          <path d="M57 69 L58 78 M58 78 L54 81 M58 78 L62 81" />
+        </g>
+        <circle cx="39" cy="31" r="1.6" fill={RED} />
       </g>
     </svg>
   )
@@ -95,9 +103,13 @@ export default function EasterEgg() {
 
   return (
     <div data-no-decrypt>
-      <button ref={btn} onClick={() => setOpen(true)} className="egg" aria-label="hi! you're still here? click on me to play a little game">
+      <button ref={btn} onClick={() => setOpen(true)} className="egg" aria-label="hi! you're still here? click on me to play a little game. fun fact: i was born in the year of the wood rooster">
         <span className="egg-line" aria-hidden="true">{text}<span className="caret" /></span>
-        <NameSeal />
+        <span className="egg-row">
+          <span />
+          <RoosterSeal />
+          <span className="egg-fact" aria-hidden="true">born in the year<br />of the wood rooster</span>
+        </span>
       </button>
       {open && <GameModal onClose={close} />}
     </div>
