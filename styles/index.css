@@ -1,6 +1,6 @@
 :root { --ink:#111; --muted:#6b6b6b; --line:#ececec; --soft:#fafafa; }
 html { scroll-behavior: smooth; }
-body { font-family:'Roboto Mono',ui-monospace,monospace; color:var(--ink); background:#fff; font-weight:300; -webkit-font-smoothing:antialiased; }
+body { font-family:'Roboto Mono','Nanum Gothic Coding',ui-monospace,monospace; color:var(--ink); background:#fff; font-weight:300; -webkit-font-smoothing:antialiased; }
 .wrap { max-width:1040px; margin:0 auto; padding:0 clamp(24px,6vw,72px); }
 .section { min-height:100vh; display:flex; align-items:center; padding:120px 0; }
 .eyebrow { font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; }
@@ -22,7 +22,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @media (prefers-reduced-motion: reduce) { html{scroll-behavior:auto} .reveal{transition:opacity .4s;transform:none} .caret{animation:none} }
 
 /* decrypt effect: letters start as empty slots, scramble, then lock in */
-.dc-pending [data-decrypt-early] { visibility:hidden; }
 .dc { color:transparent !important; border-radius:2px; background:linear-gradient(#e6e6e6,#e6e6e6) center / 74% 66% no-repeat; }
 .dc.scr { color:#a8a8a8 !important; background-image:linear-gradient(#f3f3f3,#f3f3f3); }
 .btn.solid .dc, .btn:hover .dc { background-image:linear-gradient(#3a3a3a,#3a3a3a); }
@@ -37,3 +36,28 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @keyframes bob { 50% { transform:translateY(-3px) } }
 @keyframes hop { 40% { transform:translateY(-10px) } }
 @media (prefers-reduced-motion: reduce) { .buddy { animation:none !important } }
+
+/* about me: ink-wash painting behind a bilingual bio */
+.about { position:relative; overflow:hidden; background:var(--soft); }
+.ink-painting { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; opacity:.5; }
+.about-p { max-width:54ch; }
+.about[lang="ko"] .about-p, .about[lang="ko"] .h2 { word-break:keep-all; }
+.lang-fade { animation:langfade .5s ease both; }
+@keyframes langfade { from { opacity:0; transform:translateY(6px) } }
+@media (max-width: 767px) { .ink-painting { opacity:.35 } }
+
+.stamp { flex:none; display:flex; flex-direction:column; align-items:center; gap:6px; background:none; border:0; padding:0; cursor:pointer; }
+.stamp-hint { font-size:10px; letter-spacing:.06em; color:var(--muted); white-space:nowrap; }
+.stamp-seal { width:64px; height:64px; transform:rotate(-5deg); transition:transform .25s; animation:stampdown .45s cubic-bezier(.3,1.4,.5,1) both; }
+.stamp:hover .stamp-seal { transform:rotate(-2deg) scale(1.05); }
+.stamp:active .stamp-seal { transform:rotate(-2deg) scale(.92); }
+@keyframes stampdown { 0% { opacity:0; transform:rotate(-12deg) scale(1.35) } 100% { opacity:1; transform:rotate(-5deg) scale(1) } }
+
+/* footer: tiny live age counter above the easter egg */
+.since { text-align:center; font-size:10.5px; line-height:1.9; color:#9a9a9a; margin:0 auto 26px; padding:0 24px; font-variant-numeric:tabular-nums; }
+.since-label { color:#8a8a8a; margin-right:4px; }
+.since-unit { white-space:nowrap; margin:0 5px; }
+.since-unit b { font-weight:500; color:#5d6b5e; }
+.since-tick { display:inline-block; animation:tick .5s ease-out; }
+@keyframes tick { 0% { transform:translateY(-3px); color:#7cc66a } }
+@media (prefers-reduced-motion: reduce) { .lang-fade, .stamp-seal, .since-tick { animation:none } }
