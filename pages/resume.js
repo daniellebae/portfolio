@@ -5,8 +5,8 @@ export default function Resume() {
   return (
     <Layout title="resume">
       <section className="wrap">
-        <Reveal><h2 className="h2">the short version of my story.</h2>
-          <p className="p mb-10">a quick look at where i’ve been and what i’ve built.</p>
+        <Reveal><h2 className="h2">resume</h2>
+          <p className="p mb-10">a quick look at what i’ve done over the years.</p>
           <div className="flex flex-wrap gap-3 mb-12">
             <a className="btn solid" href={site.resume} target="_blank" rel="noreferrer">open in new tab</a>
             <a className="btn" href={site.resume} download="Danielle-Resume.pdf">download pdf</a></div></Reveal>

@@ -7,8 +7,8 @@ export default function Campaigns() {
   return (
     <Layout title="my campaigns">
       <section className="wrap">
-        <Reveal><h2 className="h2">socials + graphics for RSOs.</h2>
-          <p className="p mb-10">work from my time as a marketing director. click any campaign to see the full story.</p></Reveal>
+        <Reveal><h2 className="h2">marketing projects i’ve worked on so far.</h2>
+          <p className="p mb-10">my work over the past three(ish) years. click on any campaign to learn more about it.</p></Reveal>
         <div className="grid md:grid-cols-3 gap-6">
           {campaigns.map((c, i) => <Reveal key={c.slug} delay={i * 90}>
             <Link href={`/campaigns/${c.slug}`} className="card block h-full group">

@@ -1,7 +1,7 @@
 // ✏️ Edit everything here. Replace placeholders when you send me your materials.
 export const site = {
   name: 'danielle',
-  email: 'hello@example.com',
+  email: 'daniellebae06@gmail.com',
   resume: '/files/resume.pdf',
   portrait: '/images/portrait.jpg', // your photo (right side of the hero)
   // about me: english + korean, switched with the red stamp

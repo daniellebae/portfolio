@@ -9,7 +9,8 @@ export default function Gallery() {
   return (
     <Layout title="gallery">
       <section className="wrap">
-        <Reveal><h2 className="h2">through my lens.</h2></Reveal>
+        <Reveal><h2 className="h2">enjoy these pictures!</h2>
+          <p className="p mb-6">taken via my canon eos r50 + nikon coolpix s6200</p></Reveal>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mt-4">
           {gallery.map((g, i) => <Reveal key={i} delay={(i % 3) * 90}>
             <button className="block w-full zoomable" onClick={() => g.src && setOpen(i)} aria-label={`enlarge ${g.title}`}>
