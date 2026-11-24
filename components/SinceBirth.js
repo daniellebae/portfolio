@@ -34,7 +34,7 @@ export default function SinceBirth() {
   }, [])
   return (
     <p className="since" title="since jan 9, 2006 · 4:30 am">
-      <span className="since-label">i’ve been here since:</span>{' '}
+      <span className="since-label">i’ve been here for:</span>{' '}
       {v ? UNITS.map((u, i) => (
         <span key={u} className="since-unit">
           <b key={i === 5 ? v[5] : undefined} className={i === 5 ? 'since-tick' : undefined}>{i > 2 ? String(v[i]).padStart(2, '0') : v[i]}</b>

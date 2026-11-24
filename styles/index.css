@@ -26,21 +26,22 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .dc.scr { color:#a8a8a8 !important; background-image:linear-gradient(#f3f3f3,#f3f3f3); }
 .btn.solid .dc, .btn:hover .dc { background-image:linear-gradient(#3a3a3a,#3a3a3a); }
 
-/* footer easter egg: a tiny pixel buddy with a speech bubble */
+/* footer easter egg: a typing line above a red name seal */
 .egg { display:flex; flex-direction:column; align-items:center; gap:12px; margin:0 auto; padding:8px 16px; cursor:pointer; background:none; border:0; }
-.egg-bubble { position:relative; font-size:11px; line-height:1; white-space:pre; padding:8px 12px; border:1px solid var(--ink); border-radius:12px; background:#fff; min-height:29px; min-width:40px; }
-.egg-bubble::after { content:''; position:absolute; left:50%; bottom:-5px; width:8px; height:8px; background:#fff; border-right:1px solid var(--ink); border-bottom:1px solid var(--ink); transform:translateX(-50%) rotate(45deg); }
-.egg-bubble .caret { width:1px; margin-left:2px; }
-.buddy { width:40px; height:47.5px; image-rendering:pixelated; filter:drop-shadow(0 0 5px rgba(150,240,120,.55)); animation:bob 2.4s ease-in-out infinite; transition:transform .2s; }
-.egg:hover .buddy, .egg:focus-visible .buddy { animation:hop .5s ease-out; }
-@keyframes bob { 50% { transform:translateY(-3px) } }
-@keyframes hop { 40% { transform:translateY(-10px) } }
-@media (prefers-reduced-motion: reduce) { .buddy { animation:none !important } }
+.egg-line { font-size:11px; line-height:1; white-space:pre; min-height:13px; color:var(--ink); }
+.egg-line .caret, .game-line .caret { width:1px; margin-left:2px; }
+.name-seal { width:56px; height:56px; transform:rotate(-4deg); transition:transform .25s; }
+.egg:hover .name-seal, .egg:focus-visible .name-seal { transform:rotate(-1deg) scale(1.06); }
+.egg:active .name-seal { transform:scale(.93); }
+.game-line { font-size:13px; line-height:1.8; color:#555; min-height:3.6em; margin-bottom:10px; max-width:52ch; }
 
 /* about me: ink-wash painting behind a bilingual bio */
-.about { position:relative; background:var(--soft); }
+.about { position:relative; background:var(--soft); overflow:clip; }
 .ink-sticky { position:sticky; top:0; height:100vh; margin-bottom:-100vh; pointer-events:none; }
-.ink-sticky canvas { display:block; width:100%; height:100%; }
+.ink-bg { position:absolute; inset:0; background:center 40% / cover no-repeat; mix-blend-mode:multiply; opacity:0; transition:opacity 1.2s ease;
+  -webkit-mask-image:linear-gradient(90deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.7) 45%, #000 70%); mask-image:linear-gradient(90deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.7) 45%, #000 70%); }
+.ink-bg.in { opacity:.32; }
+@media (max-width: 767px) { .ink-bg { -webkit-mask-image:none; mask-image:none; } .ink-bg.in { opacity:.2; } }
 .about-inner { position:relative; min-height:100vh; padding:140px 0 120px; }
 .about-p { max-width:54ch; }
 .about[lang="ko"] .about-p, .about[lang="ko"] .h2 { word-break:keep-all; }

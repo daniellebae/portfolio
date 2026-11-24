@@ -3,9 +3,10 @@ import { loadGlowRunner } from '../lib/glowRunner'
 import { typeDelay } from '../lib/typing'
 
 const LINES = ['hi!', "you're still here?", 'click on me :)']
+const GAME_LINE = ['another fun fact about me is that i love smiskis :) feel free to stick around and play the smiski game']
 
 // types each line with the same choppy rhythm as the hero, backspaces, then types the next
-function useBubble(start) {
+function useTyping(LINES, start) {
   const [line, setLine] = useState(0); const [n, setN] = useState(0); const [erasing, setErasing] = useState(false)
   useEffect(() => {
     if (!start) return
@@ -20,27 +21,32 @@ function useBubble(start) {
   return LINES[line].slice(0, n)
 }
 
-// the little pixel buddy, drawn from the game's own sprite data
-function Buddy({ ready }) {
-  const ref = useRef(null)
-  useEffect(() => {
-    if (!ready) return
-    const { frames, palette } = window.GLOW_SPRITES
-    const ctx = ref.current.getContext('2d')
-    const draw = blink => {
-      ctx.clearRect(0, 0, 16, 19)
-      frames.run1.forEach((row, j) => [...row].forEach((ch, i) => {
-        const c = palette[blink && ch === 'k' ? 'g' : ch]
-        if (c) { ctx.fillStyle = c; ctx.fillRect(i, j, 1, 1) }
-      }))
-    }
-    draw(false)
-    let t1, t2
-    const loop = () => { t1 = setTimeout(() => { draw(true); t2 = setTimeout(() => { draw(false); loop() }, 140) }, 2200 + Math.random() * 2600) }
-    loop()
-    return () => { clearTimeout(t1); clearTimeout(t2) }
-  }, [ready])
-  return <canvas ref={ref} width={16} height={19} className="buddy" aria-hidden="true" />
+// a red name seal (dojang) reading 배시원: 배 down the right column, 시원 down the left
+function NameSeal() {
+  const RED = '#c4342d', font = "'Nanum Gothic Coding','Apple SD Gothic Neo','Malgun Gothic',sans-serif"
+  const ch = (t, x, y, sy) => (
+    <text transform={`translate(${x} ${y}) scale(1 ${sy})`} textAnchor="middle" dominantBaseline="central" fontSize="27" fontWeight="700"
+      fill={RED} stroke={RED} strokeWidth="1.4" strokeLinejoin="round" fontFamily={font}>{t}</text>
+  )
+  return (
+    <svg viewBox="0 0 100 100" className="name-seal" aria-hidden="true">
+      <defs>
+        <filter id="seal-worn">
+          <feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="11" result="n" />
+          <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -9 0 0 0 6" result="m" />
+          <feComposite in="SourceGraphic" in2="m" operator="in" />
+        </filter>
+      </defs>
+      <g filter="url(#seal-worn)">
+        <rect x="4" y="4" width="92" height="92" rx="5" fill={RED} />
+        <rect x="15" y="15" width="70" height="70" rx="2" fill="#fff" />
+        <rect x="49.2" y="19" width="1.6" height="62" fill={RED} />
+        {ch('배', 67, 50, 2)}
+        {ch('시', 33, 33, 1.05)}
+        {ch('원', 33, 67, 1.05)}
+      </g>
+    </svg>
+  )
 }
 
 function GameModal({ onClose }) {
@@ -57,12 +63,13 @@ function GameModal({ onClose }) {
     const overflow = document.body.style.overflow; document.body.style.overflow = 'hidden'
     return () => { alive = false; game && game.destroy(); window.removeEventListener('keydown', k); document.body.style.overflow = overflow }
   }, [onClose])
+  const line = useTyping(GAME_LINE, true)
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6" style={{ background: 'rgba(255,255,255,.9)', backdropFilter: 'blur(18px)' }}
       role="dialog" aria-modal="true" aria-label="glow runner game" onMouseDown={e => e.target === e.currentTarget && onClose()}>
       <div className="w-full max-w-3xl bg-white rounded-3xl p-6 md:p-10" style={{ border: '1px solid var(--line)', boxShadow: '0 30px 80px rgba(0,0,0,.08)' }}>
         <div className="flex justify-between items-start mb-6">
-          <div><p className="eyebrow">you found me!</p><h2 className="text-2xl font-normal">glow runner</h2></div>
+          <div className="pr-6"><p className="game-line" aria-label={GAME_LINE[0]}><span aria-hidden="true">{line}<span className="caret" /></span></p><h2 className="text-2xl font-normal">glow runner</h2></div>
           <button className="btn" onClick={onClose}>close</button>
         </div>
         <canvas ref={ref} />
@@ -74,12 +81,11 @@ function GameModal({ onClose }) {
 
 export default function EasterEgg() {
   const [open, setOpen] = useState(false)
-  const [ready, setReady] = useState(false)
   const [seen, setSeen] = useState(false)
   const btn = useRef(null)
-  const text = useBubble(seen)
+  const text = useTyping(LINES, seen)
 
-  useEffect(() => { loadGlowRunner().then(() => setReady(true)).catch(() => {}) }, [])
+  useEffect(() => { loadGlowRunner().catch(() => {}) }, []) // warm up the game in the background
   useEffect(() => {
     const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setSeen(true); io.disconnect() } }, { threshold: 0.6 })
     btn.current && io.observe(btn.current); return () => io.disconnect()
@@ -90,8 +96,8 @@ export default function EasterEgg() {
   return (
     <div data-no-decrypt>
       <button ref={btn} onClick={() => setOpen(true)} className="egg" aria-label="hi! you're still here? click on me to play a little game">
-        <span className="egg-bubble" aria-hidden="true">{text}<span className="caret" /></span>
-        <Buddy ready={ready} />
+        <span className="egg-line" aria-hidden="true">{text}<span className="caret" /></span>
+        <NameSeal />
       </button>
       {open && <GameModal onClose={close} />}
     </div>
